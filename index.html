@@ -6,8 +6,75 @@
     <script src="webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="iron-ajax/iron-ajax.html">
     <link rel="import" href="polymer/polymer-element.html">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-   
+        <my-user><my-user>     
+                <dom-module id="my-user">
+                    <template>
+                    <style>
+                        .grey{background-color: grey;}
+	                    .green{background-color: green;}
+                        .yellow{background-color:yellow;}
+                        .text1 { color: yellow; }
+                        .info{background-color:slateblue;color: white;}
+                        .forms{width: 50%;margin: auto; background-color: whitesmoke; padding: 100px;}
+                        .forms h3{text-align: center;}
+                    </style>
+                      <div id="forms">
+                            <h3>Click the buttons to change the colors</h3>
+                            
+                            <div class="info"style="background-color:[[bgcolor]]" >
+                                <p>{{id}}</p><p class="text1">{{name}}</p>
+                                <p>{{job}}</p>
+                            </div>
+                            
+                            <div>
+                                <input type="text" value = {{name::input}}>
+                                <input type="text" value = {{job::input}}>
+                            </div>
+                            <div>
+                                <input type="button" value="To green" on-click="toGreen">
+                                <input type="button" value="To yellow" on-click="toYellow">
+                                <input type="button" value="To grey" on-click="toGrey">
+
+                            </div>
+                      </div>
+                      
+                 </template>
+                     <script>
+                      class MyUser extends Polymer.Element {
+                        static get is() { return "my-user"; }
+                        static get properties() {
+                          return {
+                            id: {
+                              type: Number,
+                              value:22009877
+                            },
+                            name:{
+                              type: String,
+                              value:'Israel Arias'
+                            },
+                            job:{
+                              type: String,
+                              value:'Developer'
+                            }
+                          }
+                          
+                        }
+                        
+                        toGreen(){
+                            this.bgcolor = "green;";  
+                        }
+                        toYellow(){
+                            this.bgcolor = "yellow;";
+                        }
+                        toGrey(){
+                            this.bgcolor = "grey;";
+                         }
+                      }
+                      customElements.define(MyUser.is, MyUser);
+                    </script>
+                   </dom-module>
 </body>
 </html>
